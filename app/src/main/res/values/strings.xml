@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Automoviles</string>
+
+    <string name="toyoya">Toyota</string>
+    <string name="bmw">BMW</string>
+    <string name="nisan">Nisan</string>
+</resources>
