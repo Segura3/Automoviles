@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Modelo"
+        android:hint="@string/modelos"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="HP"
+        android:hint="@string/hpm"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
@@ -85,7 +85,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietHp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:inputType="number">
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -98,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Año"
+        android:hint="@string/anos"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
@@ -114,7 +115,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietAno"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:inputType="number">
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -127,7 +129,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:onClick="click"
-        android:text="Agregar"
+        android:text="@string/agregar"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:cornerRadius="15dp"
@@ -139,7 +141,4 @@
         app:layout_constraintVertical_bias="0.898">
 
     </com.google.android.material.button.MaterialButton>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

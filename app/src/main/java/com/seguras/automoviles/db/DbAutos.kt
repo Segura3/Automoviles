@@ -4,27 +4,28 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.widget.Toast
+import com.seguras.automoviles.R
 import com.seguras.automoviles.model.Auto
 import java.lang.Exception
 
 class DbAutos(context: Context): DBHelper(context) {
     val context = context
 
-    fun insertGame(modelo: String, hp: Int, año: Int, marca: String): Long{
+    fun insertAuto(modelo: String, hp: String, ano: String, marca: String): Long{
         val dbHelper = DBHelper(context)
         val db = dbHelper.writableDatabase
         var id: Long = 0
 
         try{
             val values = ContentValues()
-            values.put("model", modelo)
-            values.put("hp", hp)
-            values.put("year", año)
-            values.put("brand", marca)
+            values.put(context.getString(R.string.model), modelo)
+            values.put(context.getString(R.string.hps), hp)
+            values.put(context.getString(R.string.year), ano)
+            values.put(context.getString(R.string.brand), marca)
 
             id = db.insert(TABLE_AUTOS, null, values)
         }catch(e: Exception){
-            Toast.makeText(context, "Error de insercion", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.errInser), Toast.LENGTH_SHORT).show()
         }finally {
             db.close()
         }
@@ -32,47 +33,47 @@ class DbAutos(context: Context): DBHelper(context) {
         return id
     }
 
-    fun getGames(): ArrayList<Auto>{
+    fun getAutos(): ArrayList<Auto>{
         val dbHelper = DBHelper(context)
         val db = dbHelper.writableDatabase
 
-        var listGames = ArrayList<Auto>()
-        var gameTmp: Auto? = null
-        var cursorGames: Cursor? = null
+        var listAutos = ArrayList<Auto>()
+        var autoTmp: Auto? = null
+        var cursorAutos: Cursor? = null
 
-        cursorGames = db.rawQuery("SELECT * FROM $TABLE_AUTOS", null)
+        cursorAutos = db.rawQuery("SELECT * FROM $TABLE_AUTOS", null)
 
-        if(cursorGames.moveToFirst()){
+        if(cursorAutos.moveToFirst()){
             do{
-                gameTmp = Auto(cursorGames.getInt(0), cursorGames.getString(1), cursorGames.getInt(2), cursorGames.getInt(3), cursorGames.getString(4))
-                listGames.add(gameTmp)
+                autoTmp = Auto(cursorAutos.getInt(0), cursorAutos.getString(1), cursorAutos.getString(2), cursorAutos.getString(3), cursorAutos.getString(4))
+                listAutos.add(autoTmp)
 
-            }while (cursorGames.moveToNext())
+            }while (cursorAutos.moveToNext())
         }
-        cursorGames.close()
+        cursorAutos.close()
 
-        return listGames
+        return listAutos
     }
 
-    fun getGame(id: Int): Auto?{
+    fun getAuto(id: Int): Auto?{
         val dbHelper = DBHelper(context)
         val db = dbHelper.writableDatabase
 
-        var game: Auto? = null
-        var cursorGames: Cursor? = null
+        var auto: Auto? = null
+        var cursorAutos: Cursor? = null
 
-        cursorGames = db.rawQuery("SELECT * FROM $TABLE_AUTOS WHERE id = $id LIMIT 1", null)
+        cursorAutos = db.rawQuery("SELECT * FROM $TABLE_AUTOS WHERE id = $id LIMIT 1", null)
 
-        if(cursorGames.moveToFirst()){
-            game = Auto(cursorGames.getInt(0), cursorGames.getString(1), cursorGames.getInt(2), cursorGames.getInt(3), cursorGames.getString(4))
+        if(cursorAutos.moveToFirst()){
+            auto = Auto(cursorAutos.getInt(0), cursorAutos.getString(1), cursorAutos.getString(2), cursorAutos.getString(3), cursorAutos.getString(4))
         }
 
-        cursorGames.close()
+        cursorAutos.close()
 
-        return game
+        return auto
     }
 
-    fun updateGame(id: Int, modelo: String, hp: Int, año: Int, marca: String): Boolean{
+    fun updateAuto(id: Int, modelo: String, hp: String, ano: String, marca: String): Boolean{
 
         var banderaCorrecto = false
 
@@ -80,7 +81,7 @@ class DbAutos(context: Context): DBHelper(context) {
         val db = dbHelper.writableDatabase
 
         try{
-            db.execSQL("UPDATE $TABLE_AUTOS SET model = '$modelo', hp = '$hp', year = '$año', brand = '$marca' WHERE id = $id")
+            db.execSQL("UPDATE $TABLE_AUTOS SET model = '$modelo', hp = '$hp', year = '$ano', brand = '$marca' WHERE id = $id")
             banderaCorrecto = true
         }catch(e: Exception){
 
@@ -91,7 +92,7 @@ class DbAutos(context: Context): DBHelper(context) {
         return banderaCorrecto
     }
 
-    fun deleteGame(id: Int): Boolean{
+    fun deleteAuto(id: Int): Boolean{
         var banderaCorrecto = false
 
         val dbHelper = DBHelper(context)

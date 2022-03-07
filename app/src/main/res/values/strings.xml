@@ -1,7 +1,38 @@
 <resources>
     <string name="app_name">Automoviles</string>
-
-    <string name="toyoya">Toyota</string>
+    <string name="empty"></string>
     <string name="bmw">BMW</string>
-    <string name="nisan">Nisan</string>
+    <string name="nissan">Nissan</string>
+    <string name="toyoya">Toyota</string>
+    <string name="vw">Volkswagen</string>
+    <string name="regIncorrecto">El registro se inserto correctamente</string>
+    <string name="hp">HP:\u0020</string>
+    <string name="confirmacion">Confirmación</string>
+    <string name="modelo">Modelo:\u0020</string>
+    <string name="model">model</string>
+    <string name="hps">hp</string>
+    <string name="year">year</string>
+    <string name="brand">brand</string>
+    <string name="errInser">Error de insercion</string>
+    <string name="autodb">automoviles.db</string>
+    <string name="id">ID</string>
+    <string name="autoElim">Automovil eliminado exitosamenet</string>
+    <string name="si">Si</string>
+    <string name="no">No</string>
+    <string name="valReq">Valor requerido</string>
+    <string name="ingresaValReq">Por favor ingresa los valores requeridos</string>
+    <string name="errActReg">Error al actualizar el registro</string>
+    <string name="errInsReg">Errror al insertar el registro</string>
+    <string name="regActEx">Registro actualizado exitosamente</string>
+    <string name="dElimAut">Deseas elimina el automovil %s?</string>
+    <string name="no_hay_registros">No hay registros!</string>
+    <string name="modelos">Modelo</string>
+    <string name="caballos">Caballos</string>
+    <string name="marcas">Marca</string>
+    <string name="anos">Año</string>
+    <string name="hpm">HP</string>
+    <string name="agregar">Agregar</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="editar">Editar</string>
+    <string name="borrar">Borrar</string>
 </resources>

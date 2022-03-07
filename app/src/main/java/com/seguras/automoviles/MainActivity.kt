@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         val dbAutos = DbAutos(this)
 
-        listAutos = dbAutos.getGames()
+        listAutos = dbAutos.getAutos()
 
         if(listAutos.size == 0) binding.tvNoRegistros.visibility = View.VISIBLE
         else binding.tvNoRegistros.visibility = View.INVISIBLE
@@ -41,6 +41,13 @@ class MainActivity : AppCompatActivity() {
         val autosAdapter = AutoAdapter(this, listAutos)
 
         binding.lvAutos.adapter = autosAdapter
+
+        binding.lvAutos.setOnItemClickListener { adapterView, view, i, l ->
+            val intent = Intent(this, Details::class.java)
+            intent.putExtra(getString(R.string.id), l.toInt())
+            startActivity(intent)
+            finish()
+        }
 
     }
 

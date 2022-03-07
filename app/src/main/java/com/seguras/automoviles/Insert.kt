@@ -28,12 +28,28 @@ class Insert : AppCompatActivity() {
             spinner.adapter = adapter
             spinner.onItemSelectedListener = object:
             AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                    when(position){
+                        0 -> {
+                            binding.ivHeader.setImageResource(R.drawable.bmw)
+                            cleanErrors()
+                        }
+                        1 -> {
+                            binding.ivHeader.setImageResource(R.drawable.nissan)
+                            cleanErrors()
+                        }
+                        2 -> {
+                            binding.ivHeader.setImageResource(R.drawable.toyota)
+                            cleanErrors()
+                        }
+                        3 -> {
+                            binding.ivHeader.setImageResource(R.drawable.volkswagen)
+                            cleanErrors()
+                        }
+                    }
                 }
-
                 override fun onNothingSelected(p0: AdapterView<*>?) {
-
+                    binding.ivHeader.setImageResource(R.drawable.bmw)
                 }
             }
         }
@@ -42,34 +58,64 @@ class Insert : AppCompatActivity() {
     fun click(view: View) {
         val dbAutos = DbAutos(this)
 
-        //Toast.makeText(this@Insert, "El valor spiner: ${binding.spOpciones.selectedItem}", Toast.LENGTH_SHORT).show()
-
         with(binding){
-            if(!tietModelo.text.toString().isEmpty() && !tietHp.text.toString().isEmpty() && !tietAno.text.toString().isEmpty()) {
-                val id = dbAutos.insertGame(
-                    tietModelo.text.toString(), Integer.parseInt(tietHp.text.toString()),
-                    Integer.parseInt(tietAno.text.toString()), spOpciones.selectedItem as String,
+            if(validaCampos()){
+                val id = dbAutos.insertAuto(
+                    tietModelo.text.toString(), tietHp.text.toString(),
+                    tietAno.text.toString(), spOpciones.selectedItem.toString(),
                 )
-                if (id > 0) { //El registro se inserto correctamente
+                if (id > 0) {
                     Toast.makeText(
                         this@Insert,
-                        "El registro se inserto correctamente",
+                        getString(R.string.regIncorrecto),
                         Toast.LENGTH_SHORT
                     ).show()
-                    //Reinicamos las cajas de texto
-                    tietModelo.setText("")
-                    tietHp.setText("")
-                    tietAno.setText("")
+                    tietModelo.setText(getString(R.string.empty))
+                    tietHp.setText(getString(R.string.empty))
+                    tietAno.setText(getString(R.string.empty))
                 } else {
                     Toast.makeText(
                         this@Insert,
-                        "Por favor llene todos los campos",
+                        getString(R.string.errInsReg),
                         Toast.LENGTH_SHORT
                     ).show()
-                    //Para mandar un error en una caja de texto especifica
-                    //tietTitulo.text = "Por favor agrega un titulo"
                 }
-            }
+            }else Toast.makeText(
+                this@Insert,
+                getString(R.string.empty),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun validaCampos(): Boolean{
+        var res = true
+
+        with(binding){
+            if(tietModelo.text.toString().isEmpty()){
+                tietModelo.error = getString(R.string.valReq)
+                res = false
+            }else tietModelo.error = null
+            if(tietHp.text.toString().isEmpty()){
+                tietHp.error = getString(R.string.valReq)
+                res = false
+            }else tietHp.error = null
+            if(tietAno.text.toString().isEmpty()){
+                tietAno.error = getString(R.string.valReq)
+                res = false
+            }else tietAno.error = null
+        }
+        return res
+    }
+
+    private fun cleanErrors(){
+        with(binding){
+            tietModelo.error = null
+            tietModelo.setText(getString(R.string.empty))
+            tietHp.error = null
+            tietHp.setText(getString(R.string.empty))
+            tietAno.error = null
+            tietAno.setText(getString(R.string.empty))
         }
     }
 

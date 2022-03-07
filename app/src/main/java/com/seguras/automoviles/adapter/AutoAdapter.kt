@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.seguras.automoviles.R
 import com.seguras.automoviles.databinding.AutoElementBinding
 import com.seguras.automoviles.model.Auto
 
@@ -12,6 +13,7 @@ class AutoAdapter(contexto: Context, listAutos: ArrayList<Auto>): BaseAdapter() 
 
     private val listAutos = listAutos
     private val layoutInflater = LayoutInflater.from(contexto)
+    val context = contexto
 
     override fun getCount(): Int {
         return listAutos.size
@@ -30,10 +32,24 @@ class AutoAdapter(contexto: Context, listAutos: ArrayList<Auto>): BaseAdapter() 
 
         with(binding){
             tvModelo.text = listAutos[p0].model
-            tvCaballos.text = listAutos[p0].hp.toString()
-            tvAno.text = listAutos[p0].year.toString()
+            tvCaballos.text = context.getString(R.string.hp) + listAutos[p0].hp
+            tvAno.text = context.getString(R.string.modelo) + listAutos[p0].year
             tvMarca.text = listAutos[p0].brand
-            //Actualizar la imagen dependiendo de la marca
+
+            when(listAutos[p0].brand){
+                "BMW" -> {
+                    ivMarca.setImageResource(R.drawable.bmw_logo)
+                }
+                "Nissan" -> {
+                    ivMarca.setImageResource(R.drawable.nissan_logo)
+                }
+                "Toyota" -> {
+                    ivMarca.setImageResource(R.drawable.toyota_logo)
+                }
+                "Volkswagen" -> {
+                    ivMarca.setImageResource(R.drawable.volkswagen_logo)
+                }
+            }
         }
 
         return binding.root
