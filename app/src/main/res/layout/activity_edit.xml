@@ -55,7 +55,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietModelo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:maxLength="20"
+            android:maxLines="1">
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -85,7 +87,8 @@
             android:id="@+id/tietHp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number">
+            android:inputType="number"
+            android:maxLength="4">
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -115,7 +118,8 @@
             android:id="@+id/tietAno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number">
+            android:inputType="number"
+            android:maxLength="4">
 
         </com.google.android.material.textfield.TextInputEditText>
 

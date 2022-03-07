@@ -104,6 +104,7 @@ class Insert : AppCompatActivity() {
                 tietAno.error = getString(R.string.valReq)
                 res = false
             }else tietAno.error = null
+
         }
         return res
     }
